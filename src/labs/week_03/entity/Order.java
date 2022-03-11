@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Order {
+    private static Integer idCounter = 0;
     private Integer id;
     private OrderStatus status;
     private List<OrderLine> orderLines;
@@ -16,29 +17,31 @@ public class Order {
     private LocalDate deliveryDueDate;
     private BigDecimal totalPrice;
     private PaymentMethod paymentMethod;
-    private String user;
+    private Integer userId;
 
     public Order()
     {
-        this.id = 0;
+        this.id = idCounter;
+        idCounter++;
         this.status = OrderStatus.Entered;
         this.orderLines = new ArrayList<>();
         this.creationDate = null;
         this.deliveryDueDate = null;
         this.totalPrice = new BigDecimal(0.0);
         this.paymentMethod = PaymentMethod.Cash;
-        this.user = "N/A";
+        this.userId = -1;
     }
 
-    public Order(Integer id, OrderStatus status, List<OrderLine> orderLines, LocalDateTime creationDate, LocalDate deliveryDueDate, BigDecimal totalPrice, PaymentMethod paymentMethod, String user) {
-        this.id = id;
+    public Order(OrderStatus status, List<OrderLine> orderLines, LocalDateTime creationDate, LocalDate deliveryDueDate, BigDecimal totalPrice, PaymentMethod paymentMethod, Integer userId) {
+        this.id = idCounter;
+        idCounter++;
         this.status = status;
         this.orderLines = orderLines;
         this.creationDate = creationDate;
         this.deliveryDueDate = deliveryDueDate;
         this.totalPrice = totalPrice;
         this.paymentMethod = paymentMethod;
-        this.user = user;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -97,12 +100,12 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getUser() {
-        return user;
+    public Integer getUser() {
+        return this.userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser(Integer userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -110,7 +113,7 @@ public class Order {
     {
         StringBuilder str = new StringBuilder();
         str.append("Id: " + this.id + "\n");
-        str.append("Name: " + this.user + "\n");
+        str.append("User id: " + this.userId + "\n");
         str.append("Status: " + this.status.toString() + "\n");
         for(OrderLine ol: this.orderLines)
         {

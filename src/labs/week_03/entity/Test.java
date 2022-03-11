@@ -21,7 +21,13 @@ public class Test {
         l.add(ol2);
         l.add(ol3);
 
-        Order o = new Order(1, OrderStatus.Booked, l, LocalDateTime.now(), LocalDate.now(), new BigDecimal(0.0), PaymentMethod.Card, "U1");
+        Order o = new Order(OrderStatus.Booked, l, LocalDateTime.now(), LocalDate.now(), new BigDecimal(0.0), PaymentMethod.Card, 1);
         System.out.println(o);
+
+        User u1 = new User("U1", new ArrayList<>());
+        User u2 = new User("U2", new ArrayList<>());
+
+        System.out.println(u1);
+        System.out.println(u2);
     }
 }

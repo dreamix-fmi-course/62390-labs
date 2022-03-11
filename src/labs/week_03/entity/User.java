@@ -4,28 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private int userId;
+    private static Integer idCounter = 0;
+    private Integer userId;
     private String userName;
     private List<Order> orders;
 
     public User()
     {
-        this.userId = 0;
+        this.userId = idCounter;
+        idCounter++;
         this.userName = "N/A";
         this.orders = new ArrayList<>();
     }
 
-    public User(int userId, String userName, List<Order> orders) {
-        this.userId = userId;
+    public User(String userName, List<Order> orders) {
+        this.userId = idCounter;
+        idCounter++;
         this.userName = userName;
         this.orders = orders;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -43,5 +46,11 @@ public class User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.valueOf(this.userId) + " - " + this.userName;
     }
 }
