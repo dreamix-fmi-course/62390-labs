@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Order {
-    private static Integer idCounter = 0;
-    private Integer id;
+    private static Long idCounter = (long)0;
+    private Long id;
     private OrderStatus status;
     private List<OrderLine> orderLines;
     private LocalDateTime creationDate;
@@ -44,11 +44,11 @@ public class Order {
         this.userId = userId;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
