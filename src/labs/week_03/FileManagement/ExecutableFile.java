@@ -1,12 +1,18 @@
 package labs.week_03.FileManagement;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExecutableFile extends File{
     private List<String> requiredResources;
     private LocalDate lastExecutionDate;
 
+    public ExecutableFile(String name, String location, List<String> requiredResources) {
+        super(name, location);
+        this.requiredResources = requiredResources;
+        this.lastExecutionDate = null;
+    }
 
     public List<String> getRequiredResources() {
         return requiredResources;
@@ -25,14 +31,18 @@ public class ExecutableFile extends File{
     }
 
     @Override
-    <T> T copy(String newLocation) {
-        return null;
+    public File copy(String newLocation)
+    {
+        ExecutableFile f = new ExecutableFile(this.getName(), newLocation, this.getRequiredResources());
+        f.setLocation(newLocation);
+        return f;
     }
 
     @Override
     public void execute()
     {
-        System.out.println("Executing " + this.name);
+        System.out.println("Executing " + this.getName());
+        this.setLastExecutionDate(LocalDate.now());
     }
 
     @Override
@@ -48,10 +58,15 @@ public class ExecutableFile extends File{
             str.append("\n");
         }
         str.append("Creation day: " + this.getCreationDate().toString() + "\n");
-        str.append("Last execution date: " + this.getLastExecutionDate().toString() + "\n");
+        if(this.getLastExecutionDate()!=null) {
+            str.append("Last execution date: " + this.getLastExecutionDate().toString() + "\n");
+        }
         str.append("Required resources: \n");
 
-        for(String s)
+        for(String s: this.requiredResources)
+        {
+            str.append(s + "\n");
+        }
 
         return str.toString();
     }

@@ -2,7 +2,7 @@ package labs.week_03.FileManagement;
 
 import java.time.LocalDate;
 
-abstract class File {
+abstract class File implements Cloneable {
     private String name;
     private String location;
     private LocalDate creationDate;
@@ -53,7 +53,7 @@ abstract class File {
         this.location = newLocation;
     }
 
-    abstract <T> T copy(String newLocation);
+    abstract File copy(String newLocation);
 
     public void delete()
     {
