@@ -1,12 +1,14 @@
 package com.example.TicketSystem.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
 @Getter
+@Setter
 public class Ticket {
     private UUID ticketId;
     private BigDecimal price;
