@@ -1,5 +1,6 @@
 package com.example.TicketSystem.service;
 
+import com.example.TicketSystem.config.AppConfig;
 import com.example.TicketSystem.model.Event;
 import com.example.TicketSystem.model.Ticket;
 import com.example.TicketSystem.model.User;
@@ -18,16 +19,28 @@ import java.util.stream.Collectors;
 public class TicketService implements TicketServiceInterface{
     private TicketRepository ticketDb;
     private EventRepository eventDb;
+    private AppConfig appConfig;
 
     @Autowired
-    public TicketService(TicketRepository ticketDb, EventRepository eventDb)
-    {
+    public TicketService(TicketRepository ticketDb, EventRepository eventDb, AppConfig appConfig) {
         this.ticketDb = ticketDb;
         this.eventDb = eventDb;
+        this.appConfig = appConfig;
     }
 
     @Override
-    public void createTicket(Ticket u) {
+    public void createTicket(Ticket u) throws Exception {
+        int maxRow = this.appConfig.getEvent().getMaximumRow();
+        int maxSeat = this.appConfig.getEvent().getMaximumSeat();
+
+        long count = this.ticketDb.getAllTickets().stream()
+                .filter(t -> t.getEvent().equals(u.getEvent()) && t.getRow() == u.getRow() && t.getSeat() == u.getSeat())
+                .count();
+        if(count > 0 || u.getRow() > maxRow || u.getSeat() > maxSeat)
+        {
+            throw new Exception("Invalid ticket data");
+        }
+
         this.ticketDb.createTicket(u);
     }
 

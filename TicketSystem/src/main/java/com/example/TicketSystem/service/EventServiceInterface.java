@@ -2,6 +2,7 @@ package com.example.TicketSystem.service;
 
 import com.example.TicketSystem.model.Event;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface EventServiceInterface {
@@ -12,4 +13,6 @@ public interface EventServiceInterface {
     Event findById(UUID id);
 
     void updateEvent(Event event);
+
+    List<Event> getAllEvents();
 }

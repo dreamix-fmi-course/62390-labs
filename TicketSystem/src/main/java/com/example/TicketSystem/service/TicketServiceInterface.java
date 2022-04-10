@@ -16,7 +16,7 @@ public interface TicketServiceInterface {
      * Can NOT duplicate row and seat same event.
      * @param u
      */
-    void createTicket(Ticket u);
+    void createTicket(Ticket u) throws Exception;
 
     void removeTicket(UUID id);
 

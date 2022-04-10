@@ -1,12 +1,14 @@
 package com.example.TicketSystem.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
 @Getter
+@Setter
 public class Event {
     private UUID eventId;
     private String name;
