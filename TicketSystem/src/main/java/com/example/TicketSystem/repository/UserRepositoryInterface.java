@@ -2,6 +2,7 @@ package com.example.TicketSystem.repository;
 
 import com.example.TicketSystem.model.User;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserRepositoryInterface {
@@ -24,4 +25,6 @@ public interface UserRepositoryInterface {
      * Update user information
      */
     void updateUser(User user);
+
+    List<User> getAllUsers();
 }
