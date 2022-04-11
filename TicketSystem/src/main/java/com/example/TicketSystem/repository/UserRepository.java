@@ -3,9 +3,11 @@ package com.example.TicketSystem.repository;
 import com.example.TicketSystem.model.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository implements UserRepositoryInterface{
@@ -29,5 +31,10 @@ public class UserRepository implements UserRepositoryInterface{
     @Override
     public void updateUser(User user) {
         this.users.replace(user.getId(), user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return this.users.values().stream().collect(Collectors.toList());
     }
 }

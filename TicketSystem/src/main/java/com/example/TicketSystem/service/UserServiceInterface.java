@@ -24,4 +24,6 @@ public interface UserServiceInterface {
      * Return all visited events for the past month
      */
     List<Event> getAllVisitedEventsInPastMonth();
+
+    List<User> getAllUsers();
 }

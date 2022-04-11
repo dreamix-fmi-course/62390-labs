@@ -60,4 +60,9 @@ public class UserService implements UserServiceInterface {
                 .filter(e -> e.getDate().compareTo(LocalDateTime.now().minusMonths(1))>=0 && e.getDate().compareTo(LocalDateTime.now())<0)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return this.userDb.getAllUsers();
+    }
 }
